@@ -133,6 +133,7 @@ int32_t SHSoundFile::Open(char *fileName)
 		isOpen = true;
         strcpy(fullname, fileName);
         FullToFileName();
+        framePosition = 100000;
         ReadFloatBlock(1000, display);
     }
 	return(error);
