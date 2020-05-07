@@ -37,6 +37,10 @@
 			isa = PBXBuildFile;
 			fileRef = 2772F8930A148BB1AE13129C;
 		};
+		506A749B751E266137EC7146 = {
+			isa = PBXBuildFile;
+			fileRef = 967A0E55D92B54F1C951A1F3;
+		};
 		8FB92E0B3B7D85C6B1A805B3 = {
 			isa = PBXBuildFile;
 			fileRef = D0497D00134F7FC1C22E3D55;
@@ -44,6 +48,10 @@
 		53C34090DCA910496DD32798 = {
 			isa = PBXBuildFile;
 			fileRef = 200BEC69D161F0BEE415070D;
+		};
+		C8A7C4F138020D6B705A910E = {
+			isa = PBXBuildFile;
+			fileRef = 831C1D6CF78EEE87EB650A76;
 		};
 		D34267B9CBF148D08D95C64A = {
 			isa = PBXBuildFile;
@@ -105,6 +113,10 @@
 			isa = PBXBuildFile;
 			fileRef = 9EC05DBEB24FB9921C571049;
 		};
+		E8680893DB38ADCF6552BFB8 = {
+			isa = PBXBuildFile;
+			fileRef = 0B229BDA912718A9F112931F;
+		};
 		883CC63F7E54C00BFDE529FB = {
 			isa = PBXBuildFile;
 			fileRef = 62A3B12CD2E7F23CF9DDB6EB;
@@ -148,6 +160,13 @@
 			path = ../../JuceLibraryCode/JuceHeader.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0B229BDA912718A9F112931F = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_utils.mm";
+			path = "../../JuceLibraryCode/include_juce_audio_utils.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		0B30432E92B894D99F0B1A28 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -167,6 +186,13 @@
 			lastKnownFileType = text.plist.xml;
 			name = "Info-App.plist";
 			path = "Info-App.plist";
+			sourceTree = "SOURCE_ROOT";
+		};
+		1DD0CB0A1FDFB2D5C86E5AC7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_utils";
+			path = "../../../JUCE/modules/juce_audio_utils";
 			sourceTree = "SOURCE_ROOT";
 		};
 		200BEC69D161F0BEE415070D = {
@@ -323,6 +349,13 @@
 			path = "../../../JUCE/modules/juce_gui_basics";
 			sourceTree = "SOURCE_ROOT";
 		};
+		831C1D6CF78EEE87EB650A76 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = DiscRecording.framework;
+			path = System/Library/Frameworks/DiscRecording.framework;
+			sourceTree = SDKROOT;
+		};
 		84E4CDABCBCB94926AF767F5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -364,6 +397,13 @@
 			name = SHSoundfile.h;
 			path = "../../Source/s_soundfile/SHSoundfile.h";
 			sourceTree = "SOURCE_ROOT";
+		};
+		967A0E55D92B54F1C951A1F3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreAudioKit.framework;
+			path = System/Library/Frameworks/CoreAudioKit.framework;
+			sourceTree = SDKROOT;
 		};
 		97E361A4038AA358315E5184 = {
 			isa = PBXFileReference;
@@ -567,6 +607,7 @@
 				C3BAAFA8475B0920EE90EA6C,
 				9E7D31827CF1A0904E0F6319,
 				24822EE7EED47FCB18BF9689,
+				1DD0CB0A1FDFB2D5C86E5AC7,
 				6F1081A3797CEA0386B22DE2,
 				88B50878F2B5B2BFA0DF0B45,
 				E424BE38EDE5082732B987FC,
@@ -588,6 +629,7 @@
 				708ED10CF27E45FD97ACE084,
 				2F26079BCE10B3C7A95DF26B,
 				9EC05DBEB24FB9921C571049,
+				0B229BDA912718A9F112931F,
 				62A3B12CD2E7F23CF9DDB6EB,
 				B9B16B69349B37112832678C,
 				7ED88F9A4AF37F59AB8A5465,
@@ -621,8 +663,10 @@
 				E56116553C68A340437040FB,
 				D0CDBCE8762E092DCF7D7B17,
 				2772F8930A148BB1AE13129C,
+				967A0E55D92B54F1C951A1F3,
 				D0497D00134F7FC1C22E3D55,
 				200BEC69D161F0BEE415070D,
+				831C1D6CF78EEE87EB650A76,
 				A8DBF2A7670DFF6B0F1C1838,
 				14C3AF97AFA455D034891B79,
 				FAB00B476A7AA9D4A735B106,
@@ -658,6 +702,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
@@ -700,6 +745,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
@@ -760,6 +806,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -779,6 +826,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "soundhack1";
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
@@ -806,6 +854,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
@@ -823,6 +872,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PRODUCT_NAME = "soundhack1";
+				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wreorder";
 				ZERO_LINK = NO;
 			};
@@ -872,6 +922,7 @@
 				52B62D0F4AF7FCF80668FA14,
 				7B98BED31C1F3523A67644B1,
 				1D9096D47160112A3287F41B,
+				E8680893DB38ADCF6552BFB8,
 				883CC63F7E54C00BFDE529FB,
 				BEBFC8CFE3A75277B46C9987,
 				6322396718410CF6F0AC00B4,
@@ -895,8 +946,10 @@
 				78E113BB27EB5C99F772757E,
 				4396226CC594178224EC40FD,
 				47568B9CB484635CA0DC7DDF,
+				506A749B751E266137EC7146,
 				8FB92E0B3B7D85C6B1A805B3,
 				53C34090DCA910496DD32798,
+				C8A7C4F138020D6B705A910E,
 				D34267B9CBF148D08D95C64A,
 				1CE5D58BE501AB473D111193,
 				D1C34AE3C3D5799FF67CB2A0,

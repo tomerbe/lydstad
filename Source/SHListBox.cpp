@@ -71,7 +71,7 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     float x, y;
     int32_t i;
     char filename[256];
-    Font f(String("Century Gothic"), String("Bold"), 40.0f );
+    Font f(String("Century Gothic"), String("Bold"), (float)height);
     
     g.fillAll (Colours::black);
     
@@ -105,10 +105,11 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     g.strokePath(waveBlob, PathStrokeType(1.0f));
 
     g.setFont (f);
-    g.setColour (Colours::darkred);
     strcpy(filename, soundfiles[rowNumber]->filename);
     //sprintf(filename, "%c: my little file", rowNumber+65);
     g.setColour (Colours::whitesmoke);
+    if(rowIsSelected)
+        g.setColour (Colours::darkred);
     g.drawText (filename, Rectangle<int>(1-1,1-1,width-2,height-2), Justification::centred, true);
     g.drawText (filename, Rectangle<int>(1-1,1+1,width-2,height-2), Justification::centred, true);
     g.drawText (filename, Rectangle<int>(1+1,1+1,width-2,height-2), Justification::centred, true);

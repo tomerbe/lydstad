@@ -17,7 +17,7 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-class MainComponent   : public Component, public DragAndDropContainer
+class MainComponent   : public DragAndDropContainer, public AudioAppComponent
 {
 public:
     //==============================================================================
@@ -25,18 +25,22 @@ public:
     ~MainComponent();
 
     //==============================================================================
+    //==============================================================================
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override;
+    void releaseResources() override;
     void paint (Graphics&) override;
     void resized() override;
     
     LookAndFeel *laf;
-    Viewport timelineVP;
+    Viewport timelineVP, soundfileVP;
     SHTimeline *timeline;
-    SHListBox soundfileLB;
+    SHListBox *soundfileLB;
 
 private:
     //==============================================================================
     // Your private member variables go here...
-
+    Random random;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
