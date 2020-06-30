@@ -1511,6 +1511,12 @@ void SHSoundFile::FreeDiskMemory(void)
 	longBlock = 0;
 }
 
+void SHSoundFile::SetPosition(float fraction)
+{
+    framePosition = (int32_t)(fraction * (frameCount - 1000));
+    ReadFloatBlock(1000, display);
+}
+
 size_t SHSoundFile::InitDiskBlock(size_t framesRequested)
 {
 	if(framesRequested != framesPerBlock)

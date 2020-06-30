@@ -62,7 +62,8 @@ public:
 		int32_t	CreateSunHeader();
 		int32_t	WriteSunHeader();
 		
-		void		FreeDiskMemory(void);
+		void	FreeDiskMemory(void);
+        void    SetPosition(float fraction);
 		size_t	InitDiskBlock(size_t frameCount);
 		size_t	ReadDiskBlock(size_t framesRequested);
 		size_t	WriteDiskBlock(size_t framesRequested);

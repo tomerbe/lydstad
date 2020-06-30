@@ -13,11 +13,11 @@ MainComponent::MainComponent()
 {
     // create windows
     setSize (800, 800);
-    laf = new LookAndFeel_V3();
-    setLookAndFeel(laf);
+    laf.reset(new LookAndFeel_V3());
+    setLookAndFeel(laf.get());
 
     soundfileVP.setSize(getWidth(), getHeight());
-    auto soundfileLB = new SHListBox();
+    soundfileLB = new SHListBox();
     soundfileLB->setSize((getWidth()) - 6, getHeight() * 2);
     soundfileLB->setColour(ListBox::backgroundColourId, Colours::darkgrey);
     soundfileLB->setRowHeight(25);
@@ -69,20 +69,21 @@ void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRat
     message << " samplesPerBlockExpected = " << samplesPerBlockExpected << newLine;
     message << " sampleRate = " << sampleRate;
     Logger::getCurrentLogger()->writeToLog (message);
+ //   if (soundfileLB->readerSource.get() != nullptr)
+        soundfileLB->transportSource.prepareToPlay (samplesPerBlockExpected, sampleRate);
 }
 void MainComponent::releaseResources()
-{;
+{
+    soundfileLB->transportSource.releaseResources();
 }
 void MainComponent::getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
 {
-    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel)
+    if (soundfileLB->readerSource.get() == nullptr)
     {
-        // Get a pointer to the start sample in the buffer for this audio output channel
-        auto* buffer = bufferToFill.buffer->getWritePointer (channel, bufferToFill.startSample);
- 
-        // Fill the required number of samples with noise between -0.125 and +0.125
-        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample)
-            buffer[sample] = random.nextFloat() * 0.25f - 0.125f;
+        bufferToFill.clearActiveBufferRegion();
+        return;
     }
+ 
+    soundfileLB->transportSource.getNextAudioBlock (bufferToFill);
 }
 

@@ -32,7 +32,7 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
-    LookAndFeel *laf;
+    std::unique_ptr<LookAndFeel> laf;
     Viewport timelineVP, soundfileVP;
     SHTimeline *timeline;
     SHListBox *soundfileLB;

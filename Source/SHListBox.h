@@ -17,12 +17,21 @@
 /*
 */
 
-class SHListBox    : public ListBox, public ListBoxModel, public FileDragAndDropTarget
+enum TransportState
+{
+    Stopped,
+    Starting,
+    Playing,
+    Stopping
+};
+
+class SHListBox    : public ListBox, public ListBoxModel, public FileDragAndDropTarget, public ChangeListener
 {
 public:
     SHListBox();
     ~SHListBox();
     
+    void listBoxItemClicked (int row, const MouseEvent&) override;
     bool     isInterestedInFileDrag (const StringArray &files) override;
     void     filesDropped (const StringArray &files, int x, int y) override;
     void    fileDragEnter (const StringArray& files, int x, int y) override;
@@ -30,11 +39,18 @@ public:
     void    fileDragExit (const StringArray& files) override;
     int     getNumRows () override;
     void    paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
+    void    changeListenerCallback (ChangeBroadcaster* source) override;
+    void changeState (TransportState newState);
+
     int     rows;
     
     bool somethingIsBeingDraggedOver;
+    AudioFormatManager formatManager;
+    std::unique_ptr<AudioFormatReaderSource> readerSource;
+    AudioTransportSource transportSource;
+    TransportState state;
 
-    std::vector<SHSoundFile *>soundfiles;
+    std::vector<File *>soundfiles;
     juce_UseDebuggingNewOperator
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SHListBox)
