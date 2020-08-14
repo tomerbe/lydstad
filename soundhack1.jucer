@@ -5,12 +5,6 @@
     <GROUP id="{7B4D7B7A-8A4E-3A71-2A58-42EB8C7A9F89}" name="Source">
       <FILE id="jH7Cgl" name="SHListBox.cpp" compile="1" resource="0" file="Source/SHListBox.cpp"/>
       <FILE id="NKgKeH" name="SHListBox.h" compile="0" resource="0" file="Source/SHListBox.h"/>
-      <GROUP id="{5A36EADD-D228-0803-3691-1D1447AA7CCB}" name="s_soundfile">
-        <FILE id="jVVrTP" name="IEEE80.c" compile="1" resource="0" file="Source/s_soundfile/IEEE80.c"/>
-        <FILE id="MoGRZ0" name="IEEE80.h" compile="0" resource="0" file="Source/s_soundfile/IEEE80.h"/>
-        <FILE id="SUXnWy" name="SHSoundfile.cpp" compile="1" resource="0" file="Source/s_soundfile/SHSoundfile.cpp"/>
-        <FILE id="rwGIlM" name="SHSoundfile.h" compile="0" resource="0" file="Source/s_soundfile/SHSoundfile.h"/>
-      </GROUP>
       <FILE id="G63dgq" name="SHTimeline.cpp" compile="1" resource="0" file="Source/SHTimeline.cpp"/>
       <FILE id="xa1TVf" name="SHTimeline.h" compile="0" resource="0" file="Source/SHTimeline.h"/>
       <FILE id="wvvEZ0" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
@@ -20,7 +14,7 @@
     </GROUP>
   </MAINGROUP>
   <LIVE_SETTINGS>
-    <OSX/>
+    <OSX buildEnabled="0"/>
   </LIVE_SETTINGS>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">

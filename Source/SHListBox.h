@@ -17,30 +17,23 @@
 /*
 */
 
-enum TransportState
-{
-    Stopped,
-    Starting,
-    Playing,
-    Stopping
-};
 
-class SHListBox    : public ListBox, public ListBoxModel, public FileDragAndDropTarget, public ChangeListener
+class SHListBox    : public ListBox,
+    public ListBoxModel,
+    public FileDragAndDropTarget
 {
 public:
     SHListBox();
     ~SHListBox();
     
-    void listBoxItemClicked (int row, const MouseEvent&) override;
-    bool     isInterestedInFileDrag (const StringArray &files) override;
-    void     filesDropped (const StringArray &files, int x, int y) override;
+    void    listBoxItemClicked (int row, const MouseEvent&) override;
+    bool    isInterestedInFileDrag (const StringArray &files) override;
+    void    filesDropped (const StringArray &files, int x, int y) override;
     void    fileDragEnter (const StringArray& files, int x, int y) override;
     void    fileDragMove (const StringArray& files, int x, int y) override;
     void    fileDragExit (const StringArray& files) override;
     int     getNumRows () override;
     void    paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
-    void    changeListenerCallback (ChangeBroadcaster* source) override;
-    void changeState (TransportState newState);
 
     int     rows;
     
@@ -48,7 +41,6 @@ public:
     AudioFormatManager formatManager;
     std::unique_ptr<AudioFormatReaderSource> readerSource;
     AudioTransportSource transportSource;
-    TransportState state;
 
     std::vector<File *>soundfiles;
     juce_UseDebuggingNewOperator

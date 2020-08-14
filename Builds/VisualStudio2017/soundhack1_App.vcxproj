@@ -139,8 +139,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\SHListBox.cpp"/>
-    <ClCompile Include="..\..\Source\s_soundfile\IEEE80.c"/>
-    <ClCompile Include="..\..\Source\s_soundfile\SHSoundfile.cpp"/>
     <ClCompile Include="..\..\Source\SHTimeline.cpp"/>
     <ClCompile Include="..\..\Source\MainComponent.cpp"/>
     <ClCompile Include="..\..\Source\Main.cpp"/>
@@ -1922,8 +1920,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\SHListBox.h"/>
-    <ClInclude Include="..\..\Source\s_soundfile\IEEE80.h"/>
-    <ClInclude Include="..\..\Source\s_soundfile\SHSoundfile.h"/>
     <ClInclude Include="..\..\Source\SHTimeline.h"/>
     <ClInclude Include="..\..\Source\MainComponent.h"/>
     <ClInclude Include="..\..\..\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>

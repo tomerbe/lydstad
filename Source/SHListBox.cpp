@@ -13,12 +13,12 @@
 
 //==============================================================================
 SHListBox::SHListBox()
- : ListBox( String("List Box"), this ), state(Stopped)
+ : ListBox( String("List Box"), this )
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
+    setMultipleSelectionEnabled(true);
     formatManager.registerBasicFormats();
-    transportSource.addChangeListener (this); // [2]
     somethingIsBeingDraggedOver = false;
     rows = 0;
 }
@@ -34,6 +34,7 @@ bool     SHListBox::isInterestedInFileDrag (const StringArray &files)
 {
     return(true);
 }
+
 void     SHListBox::filesDropped (const StringArray &files, int x, int y)
 {
     int i;
@@ -59,19 +60,7 @@ void     SHListBox::filesDropped (const StringArray &files, int x, int y)
 }
 void    SHListBox::listBoxItemClicked (int row, const MouseEvent& m)
 {
-    float frac;
-    frac = (float)(m.x) / getWidth();
- //   soundfiles[row]->SetPosition(frac);
-    auto* reader = formatManager.createReaderFor (*soundfiles[row]);              // [10]
-    if (reader != nullptr)
-    {
-        std::unique_ptr<AudioFormatReaderSource> newSource (new AudioFormatReaderSource (reader, true)); // [11]
-        transportSource.setSource (newSource.get(), 0, nullptr, reader->sampleRate);                     // [12]
-        readerSource.reset (newSource.release());
-        changeState (Starting);
-// [14]
-    }
-   repaintRow(row);
+
 }
 
 void    SHListBox::fileDragEnter (const StringArray& files, int x, int y)
@@ -91,42 +80,7 @@ int SHListBox::getNumRows ()
     return(rows);
 }
 
-void SHListBox::changeListenerCallback (ChangeBroadcaster* source)
-{
-    if (source == &transportSource)
-    {
-        if (transportSource.isPlaying())
-            changeState (Playing);
-        else
-            changeState (Stopped);
-    }
-}
 
-void SHListBox::changeState (TransportState newState)
-{
-    if (state != newState)
-    {
-        state = newState;
- 
-        switch (state)
-        {
-            case Stopped:                           // [3]
-                transportSource.setPosition (0.0);
-                break;
- 
-            case Starting:                          // [4]
-                transportSource.start();
-                break;
- 
-            case Playing:                           // [5]
-                break;
- 
-            case Stopping:                          // [6]
-                transportSource.stop();
-                break;
-        }
-    }
-}
 void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected)
 {
     float waveInc = 1.0f;
@@ -134,7 +88,7 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     float x, y;
     int32_t i;
     String filename;
-    Font f(String("Century Gothic"), String("Bold"), (float)height);
+    Font f(String("Gill Sans"), String("Bold"), (float)height);
     
     g.fillAll (Colours::black);
     
@@ -169,19 +123,22 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
 
     g.setFont (f);
     //strcpy(filename, soundfiles[rowNumber]->filename);
-    filename = String(rowNumber);
-    filename += soundfiles[rowNumber]->getFileName();
+    filename = soundfiles[rowNumber]->getFileName();
     //sprintf(filename, "%c: my little file", rowNumber+65);
     g.setColour (Colours::whitesmoke);
     if(rowIsSelected)
         g.setColour (Colours::darkred);
+    g.drawText (String(rowNumber), Rectangle<int>(1,1,40,height-2), Justification::left, true);
+    g.drawText (filename, Rectangle<int>(41,1,width-42,height-2), Justification::left, true);
+    /*
     g.drawText (filename, Rectangle<int>(1-1,1-1,width-2,height-2), Justification::left, true);
     g.drawText (filename, Rectangle<int>(1-1,1+1,width-2,height-2), Justification::left, true);
     g.drawText (filename, Rectangle<int>(1+1,1+1,width-2,height-2), Justification::left, true);
     g.drawText (filename, Rectangle<int>(1+1,1-1,width-2,height-2), Justification::left, true);
     g.setColour (Colours::black);
-    g.drawText (filename, Rectangle<int>(1,1,width-2,height-2), Justification::left, true);
-       
-
-
+    g.drawText (filename, Rectangle<int>(1,1,width-2,height-2), Justification::left, true);*/
+    
 }
+
+
+

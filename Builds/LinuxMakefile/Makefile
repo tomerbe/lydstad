@@ -69,8 +69,6 @@ endif
 
 OBJECTS_APP := \
   $(JUCE_OBJDIR)/SHListBox_5318e5b9.o \
-  $(JUCE_OBJDIR)/IEEE80_51ee452d.o \
-  $(JUCE_OBJDIR)/SHSoundfile_43344de7.o \
   $(JUCE_OBJDIR)/SHTimeline_a3401c1f.o \
   $(JUCE_OBJDIR)/MainComponent_a6ffb4a5.o \
   $(JUCE_OBJDIR)/Main_90ebc5c2.o \
@@ -105,16 +103,6 @@ $(JUCE_OUTDIR)/$(JUCE_TARGET_APP) : $(OBJECTS_APP) $(RESOURCES)
 $(JUCE_OBJDIR)/SHListBox_5318e5b9.o: ../../Source/SHListBox.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling SHListBox.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/IEEE80_51ee452d.o: ../../Source/s_soundfile/IEEE80.c
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling IEEE80.c"
-	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/SHSoundfile_43344de7.o: ../../Source/s_soundfile/SHSoundfile.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling SHSoundfile.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_APP) $(JUCE_CFLAGS_APP) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/SHTimeline_a3401c1f.o: ../../Source/SHTimeline.cpp

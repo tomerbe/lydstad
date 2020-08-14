@@ -2,9 +2,6 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="soundhack1\Source\s_soundfile">
-      <UniqueIdentifier>{BFDC5C2A-0A69-A9E4-3D44-FE761F65DE48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="soundhack1\Source">
       <UniqueIdentifier>{1CDC31F3-E45A-5823-2489-1DD569E10EEE}</UniqueIdentifier>
     </Filter>
@@ -429,12 +426,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\Source\SHListBox.cpp">
       <Filter>soundhack1\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\s_soundfile\IEEE80.c">
-      <Filter>soundhack1\Source\s_soundfile</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\s_soundfile\SHSoundfile.cpp">
-      <Filter>soundhack1\Source\s_soundfile</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SHTimeline.cpp">
       <Filter>soundhack1\Source</Filter>
@@ -2372,12 +2363,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\Source\SHListBox.h">
       <Filter>soundhack1\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\s_soundfile\IEEE80.h">
-      <Filter>soundhack1\Source\s_soundfile</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\s_soundfile\SHSoundfile.h">
-      <Filter>soundhack1\Source\s_soundfile</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SHTimeline.h">
       <Filter>soundhack1\Source</Filter>
