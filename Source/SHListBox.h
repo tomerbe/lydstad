@@ -34,6 +34,9 @@ public:
     void    fileDragExit (const StringArray& files) override;
     int     getNumRows () override;
     void    paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
+    void    fileOpenPanel(void);
+    void    addSoundFile(File sf);
+    void    removeSoundFile(void);
 
     int     rows;
     

@@ -32,10 +32,10 @@ MainComponent::MainComponent()
     addButton->addListener (this);
     addButton->setBounds (9, 140, 60, 60);
     
-    deleteButton.reset (new ToggleButton ("-"));
-    addAndMakeVisible (deleteButton.get());
-    deleteButton->addListener (this);
-    deleteButton->setBounds (78, 140, 60, 60);
+    removeButton.reset (new ToggleButton ("-"));
+    addAndMakeVisible (removeButton.get());
+    removeButton->addListener (this);
+    removeButton->setBounds (78, 140, 60, 60);
      
     recordButton.reset (new ToggleButton ("record"));
     addAndMakeVisible (recordButton.get());
@@ -211,6 +211,21 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == addButton.get())
     {
         //[UserButtonCode_toggleButton] -- add your button handler code here..
+        if(addButton.get()->getToggleState() == true)
+        {
+            soundfileLB->fileOpenPanel();
+            addButton.get()->setToggleState(false, dontSendNotification);
+        }
+        //[/UserButtonCode_toggleButton]
+    }
+    else if (buttonThatWasClicked == removeButton.get())
+    {
+        //[UserButtonCode_toggleButton] -- add your button handler code here..
+        if(removeButton.get()->getToggleState() == true)
+        {
+            soundfileLB->removeSoundFile();
+            removeButton.get()->setToggleState(false, dontSendNotification);
+        }
         //[/UserButtonCode_toggleButton]
     }
     else if (buttonThatWasClicked == playButton.get())

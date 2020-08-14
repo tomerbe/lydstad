@@ -38,26 +38,62 @@ bool     SHListBox::isInterestedInFileDrag (const StringArray &files)
 void     SHListBox::filesDropped (const StringArray &files, int x, int y)
 {
     int i;
-    File *sf;
-    AudioFormatReader *afr;
-    
+     
     somethingIsBeingDraggedOver = true;
     for(i = 0; i < files.size(); i++)
+        addSoundFile(File(files[i]));
+    updateContent();
+    repaint();
+}
+
+void SHListBox::fileOpenPanel(void)
+{
+    FileChooser myChooser ("Please select the sounds you wish to add...",
+                           File::getSpecialLocation (File::userHomeDirectory),
+                           "*.wav;*.WAV;*.aiff;*.aif;*.mp3;*.MP3;*.flac;*.FLAC;*.oga;*.ogg");
+    if (myChooser.browseForMultipleFilesToOpen())
     {
-        sf = new File(files[i]);
-        afr = formatManager.createReaderFor(*sf);
-        if(afr)
-        {
-            soundfiles.push_back(sf);
-            rows++;
-            delete(afr);
-        }
-        else
-            delete(sf);
+        Array<File> sfs (myChooser.getResults());
+        for(int i = 0; i < sfs.size(); i++)
+            addSoundFile(sfs[i]);
     }
     updateContent();
     repaint();
 }
+
+void    SHListBox::addSoundFile(File osf)
+{
+    File *sf;
+    AudioFormatReader *afr;
+    
+    sf = new File(osf);
+    afr = formatManager.createReaderFor(*sf);
+    if(afr)
+    {
+        soundfiles.push_back(sf);
+        rows++;
+        delete(afr);
+    }
+    else
+        delete(sf);
+}
+
+void     SHListBox::removeSoundFile()
+{
+    int i;
+    File *sf;
+    for(i = getNumSelectedRows() - 1; i >= 0 ; i--)
+    {
+        sf = soundfiles[getSelectedRow(i)];
+        delete(sf);
+        soundfiles.erase(soundfiles.begin() + getSelectedRow(i));
+        rows--;
+    }
+    deselectAllRows();
+    updateContent();
+    repaint();
+}
+
 void    SHListBox::listBoxItemClicked (int row, const MouseEvent& m)
 {
 

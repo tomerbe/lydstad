@@ -54,7 +54,7 @@ public:
     
     std::unique_ptr<SH02LAF> laf;
     std::unique_ptr<ToggleButton> addButton;
-    std::unique_ptr<ToggleButton> deleteButton;
+    std::unique_ptr<ToggleButton> removeButton;
     std::unique_ptr<ToggleButton> recordButton;
     std::unique_ptr<ToggleButton> playButton;
     std::unique_ptr<ToggleButton> pauseButton;
