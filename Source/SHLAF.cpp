@@ -71,6 +71,7 @@ void SH02LAF::drawToggleButton (Graphics& g, ToggleButton& t,
     else if (colnum == 2)
     {
         g.fillEllipse(15, 15, t.getWidth()-30, t.getHeight()-30);
+        
     }
     else if (colnum == 4)
     {
