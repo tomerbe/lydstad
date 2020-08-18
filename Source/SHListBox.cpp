@@ -13,13 +13,16 @@
 
 //==============================================================================
 SHListBox::SHListBox()
- : ListBox( String("List Box"), this )
+ : ListBox( String("List Box"), this ),
+ thumbnailCache (5),
+ thumbnail (512, formatManager, thumbnailCache)
 {
     // In your constructor, you should add any child components, and
     // initialise any special settings that your component needs.
     setMultipleSelectionEnabled(true);
     formatManager.registerBasicFormats();
     somethingIsBeingDraggedOver = false;
+    thumbnail.addChangeListener (this);
     rows = 0;
 }
 
@@ -116,6 +119,10 @@ int SHListBox::getNumRows ()
     return(rows);
 }
 
+void SHListBox::changeListenerCallback(ChangeBroadcaster *source)
+{
+    repaint();
+}
 
 void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected)
 {
@@ -124,46 +131,37 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     float x, y;
     int32_t i;
     String filename;
-    Font f(String("Gill Sans"), String("Bold"), (float)height);
+    Font f(String("Trebuchet MS"), String("Regular"), (float)height);
+    AudioFormatReader *afr;
     
+
     g.fillAll (Colours::black);
     
     g.setColour (Colours::black);
     g.fillRoundedRectangle (Rectangle<float>(1,1,width-2,height-2), 2);   // draw an outline around the component
+    thumbnail.setSource (new FileInputSource (*(soundfiles[rowNumber])));    // [7]
+    afr = formatManager.createReaderFor(*(soundfiles[rowNumber]));
 
- /*   for(i = 0; i < width; i++)
-    {
-        if(soundfiles[rowNumber]->display[i] < 0.0f)
-            soundfiles[rowNumber]->display[i] *= -1.0f;
-    }
-
-    waveBlob.clear();
-    waveBlob.startNewSubPath(1.0f, height);
-    y = height - (soundfiles[rowNumber]->display[0] * height);
-    x = 0.0f;
-    waveBlob.lineTo(x, y);
-    for(i = 1; i < width; i++)
-    {
-        x += waveInc;
-        y = height - (soundfiles[rowNumber]->display[i] * height);
-        if(y > 0.0f)
-                waveBlob.lineTo(x, y);
-    }
-    waveBlob.lineTo(width, height);
-    waveBlob.lineTo(0.0f, height);
-    waveBlob.closeSubPath();
-     
     g.setColour(Colours::darkgrey);
-    g.fillPath(waveBlob);
-    g.strokePath(waveBlob, PathStrokeType(1.0f));*/
+    thumbnail.drawChannel (g,Rectangle<int>(-1,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(1,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(-1,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(1,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
+    g.setColour(Colours::lightgrey);
+    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
 
     g.setFont (f);
-    //strcpy(filename, soundfiles[rowNumber]->filename);
     filename = soundfiles[rowNumber]->getFileName();
-    //sprintf(filename, "%c: my little file", rowNumber+65);
+    double seconds = afr->lengthInSamples/afr->sampleRate;
+    filename = filename + String(" | (") + RelativeTime(seconds).getDescription()
+        + String(") | ") + String(afr->sampleRate) + String(" sr | ")
+        + String(afr->numChannels) + String(" ch");
+    
+    delete(afr);
     g.setColour (Colours::whitesmoke);
     if(rowIsSelected)
-        g.setColour (Colours::darkred);
+        g.setColour (Colour(177, 0, 28));
     g.drawText (String(rowNumber), Rectangle<int>(1,1,40,height-2), Justification::left, true);
     g.drawText (filename, Rectangle<int>(41,1,width-42,height-2), Justification::left, true);
     /*

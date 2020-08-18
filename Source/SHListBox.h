@@ -20,6 +20,7 @@
 
 class SHListBox    : public ListBox,
     public ListBoxModel,
+    public ChangeListener,
     public FileDragAndDropTarget
 {
 public:
@@ -34,6 +35,7 @@ public:
     void    fileDragExit (const StringArray& files) override;
     int     getNumRows () override;
     void    paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected) override;
+    void    changeListenerCallback (ChangeBroadcaster* source) override;
     void    fileOpenPanel(void);
     void    addSoundFile(File sf);
     void    removeSoundFile(void);
@@ -44,7 +46,9 @@ public:
     AudioFormatManager formatManager;
     std::unique_ptr<AudioFormatReaderSource> readerSource;
     AudioTransportSource transportSource;
-
+    AudioThumbnailCache thumbnailCache;
+    AudioThumbnail thumbnail;                            // [2]
+ 
     std::vector<File *>soundfiles;
     juce_UseDebuggingNewOperator
 private:

@@ -15,8 +15,8 @@
             timestampString = "579396874.165735"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "SHListBox::fileDragEnter(files, x, y)"
             landmarkType = "7">
          </BreakpointContent>
@@ -32,8 +32,8 @@
             timestampString = "579396874.166059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "SHListBox::isInterestedInFileDrag(files)"
             landmarkType = "7">
          </BreakpointContent>
@@ -49,8 +49,8 @@
             timestampString = "579396874.166278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "SHListBox::SHListBox()"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,8 +151,8 @@
             timestampString = "579396874.167201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "SHListBox::fileDragEnter(files, x, y)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,8 +168,8 @@
             timestampString = "579396874.167408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "SHListBox::isInterestedInFileDrag(files)"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,8 +185,8 @@
             timestampString = "579396874.16761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "SHListBox::getNumRows()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,22 +237,6 @@
             startingLineNumber = "1639"
             endingLineNumber = "1639"
             landmarkName = "SHSoundFile::ReadFloatBlock(framesRequested, floatSams)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FA5215D9-D89E-4DF6-A522-127A18A584D4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Source/SHListBox.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "SHListBox::paintListBoxItem(rowNumber, g, width, height, rowIsSelected)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -323,22 +307,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6EEC138A-C091-49CD-9926-BB0A6A6C6832"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Source/MainComponent.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "MainComponent::prepareToPlay(samplesPerBlockExpected, sampleRate)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "827F8F29-2E40-44BA-977E-662075A37885"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -362,8 +330,8 @@
             filePath = "../../Source/MainComponent.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "MainComponent::buttonClicked(buttonThatWasClicked)"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,8 +378,8 @@
             filePath = "../../Source/MainComponent.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "MainComponent::buttonClicked(buttonThatWasClicked)"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,8 +490,8 @@
             filePath = "../../Source/MainComponent.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "MainComponent::buttonClicked(buttonThatWasClicked)"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,9 +522,57 @@
             filePath = "../../Source/SHListBox.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "SHListBox::removeSoundFile()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8AD8336-AF9C-4F11-9760-B0B8A9935341"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../JUCE/modules/juce_audio_utils/gui/juce_AudioThumbnail.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "810"
+            endingLineNumber = "810"
+            landmarkName = "AudioThumbnail::drawChannel(g, area, startTime, endTime, channelNum, verticalZoomFactor)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FDAF72FE-318C-4B65-9DDE-60F2DFD0E736"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/SHListBox.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "SHListBox::changeListenerCallback(source)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3865E449-B85B-4489-835E-B76178659527"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Source/SHListBox.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "SHListBox::changeListenerCallback(source)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

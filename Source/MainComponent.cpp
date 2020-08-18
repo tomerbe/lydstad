@@ -19,7 +19,7 @@ MainComponent::MainComponent()
 
     soundfileVP.setSize(getWidth() - 18, getHeight()-218);
     soundfileLB = new SHListBox();
-    soundfileLB->setSize(getWidth() * 2, getHeight() * 2);
+    soundfileLB->setSize(getWidth(), getHeight() * 2);
     soundfileLB->setColour(ListBox::backgroundColourId, Colours::black);
     soundfileLB->setRowHeight(25);
     soundfileVP.setViewedComponent(soundfileLB, true);
@@ -185,8 +185,7 @@ void MainComponent::prepareToPlay (int samplesPerBlockExpected, double sampleRat
     message << " samplesPerBlockExpected = " << samplesPerBlockExpected << newLine;
     message << " sampleRate = " << sampleRate;
     Logger::getCurrentLogger()->writeToLog (message);
- //   if (soundfileLB->readerSource.get() != nullptr)
-        soundfileLB->transportSource.prepareToPlay (samplesPerBlockExpected, sampleRate);
+    soundfileLB->transportSource.prepareToPlay (samplesPerBlockExpected, sampleRate);
 }
 void MainComponent::releaseResources()
 {
