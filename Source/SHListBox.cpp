@@ -126,13 +126,10 @@ void SHListBox::changeListenerCallback(ChangeBroadcaster *source)
 
 void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected)
 {
-    float waveInc = 1.0f;
-    Path waveBlob;
-    float x, y;
-    int32_t i;
     String filename;
     Font f(String("Trebuchet MS"), String("Regular"), (float)height);
     AudioFormatReader *afr;
+    float startSec;
     
 
     g.fillAll (Colours::black);
@@ -142,14 +139,17 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     thumbnail.setSource (new FileInputSource (*(soundfiles[rowNumber])));    // [7]
     afr = formatManager.createReaderFor(*(soundfiles[rowNumber]));
 
+    if(getSelectedRow(playRow) == rowNumber)
+    {
+        startSec = playSecond;
+    }
+    else
+        startSec = 0.0f;
     g.setColour(Colours::darkgrey);
-    thumbnail.drawChannel (g,Rectangle<int>(-1,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(1,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(-1,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(1,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
-    g.setColour(Colours::lightgrey);
-    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), 0.0f, 1.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), 0.0f, 1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), startSec, startSec+.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+.5f, 1, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), startSec, startSec+.5f, 1, 1.0f);
 
     g.setFont (f);
     filename = soundfiles[rowNumber]->getFileName();
@@ -158,20 +158,12 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
         + String(") | ") + String(afr->sampleRate) + String(" sr | ")
         + String(afr->numChannels) + String(" ch");
     
-    delete(afr);
     g.setColour (Colours::whitesmoke);
     if(rowIsSelected)
         g.setColour (Colour(177, 0, 28));
     g.drawText (String(rowNumber), Rectangle<int>(1,1,40,height-2), Justification::left, true);
     g.drawText (filename, Rectangle<int>(41,1,width-42,height-2), Justification::left, true);
-    /*
-    g.drawText (filename, Rectangle<int>(1-1,1-1,width-2,height-2), Justification::left, true);
-    g.drawText (filename, Rectangle<int>(1-1,1+1,width-2,height-2), Justification::left, true);
-    g.drawText (filename, Rectangle<int>(1+1,1+1,width-2,height-2), Justification::left, true);
-    g.drawText (filename, Rectangle<int>(1+1,1-1,width-2,height-2), Justification::left, true);
-    g.setColour (Colours::black);
-    g.drawText (filename, Rectangle<int>(1,1,width-2,height-2), Justification::left, true);*/
-    
+    delete(afr);
 }
 
 

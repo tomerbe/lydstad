@@ -48,7 +48,8 @@ public:
     AudioTransportSource transportSource;
     AudioThumbnailCache thumbnailCache;
     AudioThumbnail thumbnail;                            // [2]
- 
+    float playSecond;
+    int playRow;
     std::vector<File *>soundfiles;
     juce_UseDebuggingNewOperator
 private:

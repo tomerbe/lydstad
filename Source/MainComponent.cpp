@@ -71,7 +71,8 @@ MainComponent::MainComponent()
          // Specify the number of input and output channels that we want to open
          setAudioChannels (2, 2);
      }
-    playRow = -1;
+    soundfileLB->playRow = -1;
+    startTimer(250);
 }
 
 MainComponent::~MainComponent()
@@ -113,14 +114,14 @@ void MainComponent::filePlay(int rowNumber)
 
 void MainComponent::listPlayNext(void)
 {
-    playRow++;
-    if(playRow >= soundfileLB->getNumSelectedRows())
+    soundfileLB->playRow++;
+    if(soundfileLB->playRow >= soundfileLB->getNumSelectedRows())
     {
         changeState( Stopped);
-        playRow = -1;
+        soundfileLB->playRow = -1;
     }
     else
-        filePlay(soundfileLB->getSelectedRow(playRow));
+        filePlay(soundfileLB->getSelectedRow(soundfileLB->playRow));
 }
 
 void MainComponent::changeListenerCallback (ChangeBroadcaster* source)
@@ -132,7 +133,7 @@ void MainComponent::changeListenerCallback (ChangeBroadcaster* source)
          else if ((state == Stopping) || (state == Playing))
          {
              changeState (Stopped);
-             if(playRow >= 0)
+             if(soundfileLB->playRow >= 0)
                  changeState (Starting);
          }
          else if (Pausing == state)
@@ -155,6 +156,8 @@ void MainComponent::changeState (TransportState newState)
                 playButton.get()->setToggleState(false, dontSendNotification);
                 break;
             case Starting:                          // [4]
+                soundfileLB->playSecond = 0.0f;
+                lastplaySecond = 1.0f;
                 pauseButton.get()->setToggleState(false, dontSendNotification);
                 playButton.get()->setToggleState(true, dontSendNotification);
                 listPlayNext();
@@ -175,6 +178,14 @@ void MainComponent::changeState (TransportState newState)
                 soundfileLB->transportSource.stop();
                 break;
         }
+    }
+}
+void MainComponent::timerCallback()
+{
+    if(soundfileLB->playSecond != lastplaySecond && soundfileLB->playRow >= 0)
+    {
+        lastplaySecond = soundfileLB->playSecond;
+        soundfileLB->repaintRow(soundfileLB->getSelectedRow(soundfileLB->playRow));
     }
 }
 
@@ -200,6 +211,7 @@ void MainComponent::getNextAudioBlock (const AudioSourceChannelInfo& bufferToFil
     }
  
     soundfileLB->transportSource.getNextAudioBlock (bufferToFill);
+    soundfileLB->playSecond = soundfileLB->transportSource.getCurrentPosition();
 }
 
 void MainComponent::buttonClicked (Button* buttonThatWasClicked)
@@ -236,7 +248,6 @@ void MainComponent::buttonClicked (Button* buttonThatWasClicked)
             changeState (Stopping);
         else if(state == Paused)
         {
-            soundfileLB->transportSource.setPosition (0.0);
             changeState (Starting);
         }
        //[/UserButtonCode_toggleButton]

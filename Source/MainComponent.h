@@ -31,7 +31,8 @@ enum TransportState
 */
 class MainComponent   : public DragAndDropContainer, public AudioAppComponent,
 public Button::Listener,
-public ChangeListener
+public ChangeListener,
+public Timer
 {
 public:
     //==============================================================================
@@ -50,6 +51,7 @@ public:
     void listPlayNext(void);
     void changeState (TransportState newState);
     void    changeListenerCallback (ChangeBroadcaster* source) override;
+    void timerCallback() override;
 
     
     std::unique_ptr<SH02LAF> laf;
@@ -68,7 +70,7 @@ private:
     //==============================================================================
     // Your private member variables go here...
     Random random;
-    int playRow;
+    float lastplaySecond;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
