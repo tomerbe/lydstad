@@ -24,6 +24,7 @@ SHListBox::SHListBox()
     somethingIsBeingDraggedOver = false;
     thumbnail.addChangeListener (this);
     rows = 0;
+    lastRowDrawn = -1;
 }
 
 SHListBox::~SHListBox()
@@ -121,22 +122,21 @@ int SHListBox::getNumRows ()
 
 void SHListBox::changeListenerCallback(ChangeBroadcaster *source)
 {
-    repaint();
 }
 
 void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int height, bool rowIsSelected)
 {
-    String filename;
-    Font f(String("Trebuchet MS"), String("Regular"), (float)height);
+    String filename, fileprop;
+    Font f(String("Trebuchet MS"), String("Regular"), 18.0);
     AudioFormatReader *afr;
     float startSec;
+    int min, sec, msec;
     
 
     g.fillAll (Colours::black);
-    
     g.setColour (Colours::black);
     g.fillRoundedRectangle (Rectangle<float>(1,1,width-2,height-2), 2);   // draw an outline around the component
-    thumbnail.setSource (new FileInputSource (*(soundfiles[rowNumber])));    // [7]
+    thumbnail.setSource (new FileInputSource (*(soundfiles[rowNumber])));
     afr = formatManager.createReaderFor(*(soundfiles[rowNumber]));
 
     if(getSelectedRow(playRow) == rowNumber)
@@ -145,24 +145,31 @@ void SHListBox::paintListBoxItem (int rowNumber, Graphics &g, int width, int hei
     }
     else
         startSec = 0.0f;
-    g.setColour(Colours::darkgrey);
-    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), startSec, startSec+.5f, 0, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+.5f, 1, 1.0f);
-    thumbnail.drawChannel (g,Rectangle<int>(0,height*2,width,height*-2), startSec, startSec+.5f, 1, 1.0f);
+    g.setColour(Colour(Colours::darkgrey).withAlpha(0.5f));
+    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+1.5f, 0, 1.0f);
+    thumbnail.drawChannel (g,Rectangle<int>(0,0,width,height*2), startSec, startSec+1.5f, 1, 1.0f);
 
     g.setFont (f);
-    filename = soundfiles[rowNumber]->getFileName();
-    double seconds = afr->lengthInSamples/afr->sampleRate;
-    filename = filename + String(" | (") + RelativeTime(seconds).getDescription()
-        + String(") | ") + String(afr->sampleRate) + String(" sr | ")
-        + String(afr->numChannels) + String(" ch");
-    
     g.setColour (Colours::whitesmoke);
     if(rowIsSelected)
         g.setColour (Colour(177, 0, 28));
-    g.drawText (String(rowNumber), Rectangle<int>(1,1,40,height-2), Justification::left, true);
-    g.drawText (filename, Rectangle<int>(41,1,width-42,height-2), Justification::left, true);
+    g.drawText (String(rowNumber), Rectangle<int>(0,0,40,height-2), Justification::left, true);
+    
+    fileprop = String(afr->numChannels) + String(" ch");
+    g.drawText (fileprop, Rectangle<int>(width-60,0,60,height-2), Justification::left, true);
+    
+    fileprop = String(afr->sampleRate) + String(" sr");
+    g.drawText (fileprop, Rectangle<int>(width-140,0,80,height-2), Justification::left, true);
+    
+    min = afr->lengthInSamples/(afr->sampleRate * 60);
+    sec = afr->lengthInSamples/afr->sampleRate - (min * 60);
+    msec = (1000 * afr->lengthInSamples/afr->sampleRate) - (((min * 60) + sec) * 1000);
+    fileprop = String(min).paddedLeft('0',2) + String(":") + String(sec).paddedLeft('0',2) + String(".") + String(msec).paddedLeft('0',3);
+ //   fileprop = Time(afr->lengthInSamples/afr->sampleRate).toString(false, true, true, true);
+    g.drawText (fileprop, Rectangle<int>(width-260,0,120,height-2), Justification::left, true);
+
+    filename = soundfiles[rowNumber]->getFileName();
+    g.drawText (filename, Rectangle<int>(30,0,width-270,height-2), Justification::left, true);
     delete(afr);
 }
 

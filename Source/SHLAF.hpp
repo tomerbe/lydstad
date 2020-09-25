@@ -17,8 +17,11 @@ public:
     SH02LAF();
     ~SH02LAF();
     
+    Font getTextButtonFont (TextButton&, int buttonHeight) override;
     void drawToggleButton (Graphics&, ToggleButton&,
                            bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
+    void drawButtonText (Graphics&, TextButton&,
+                         bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown) override;
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SH02LAF)

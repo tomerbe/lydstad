@@ -49,7 +49,7 @@ public:
     AudioThumbnailCache thumbnailCache;
     AudioThumbnail thumbnail;                            // [2]
     float playSecond;
-    int playRow;
+    int playRow, lastRowDrawn;
     std::vector<File *>soundfiles;
     juce_UseDebuggingNewOperator
 private:

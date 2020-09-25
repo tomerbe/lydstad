@@ -17,6 +17,24 @@ SH02LAF::~SH02LAF()
 {
 }
 
+Font SH02LAF::getTextButtonFont (TextButton&, int buttonHeight)
+{
+    return Font (String("Trebuchet MS"), String("Regular"), 18.0f);
+}
+void SH02LAF::drawButtonText (Graphics& g, TextButton& t,
+                     bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
+{
+    Font font (getTextButtonFont (t, t.getHeight()));
+    g.fillAll(Colours::black);
+    g.setFont (font);
+    g.setColour (Colours::whitesmoke);
+    g.drawRoundedRectangle(0, 0, t.getWidth(), t.getHeight(), 0, 1);
+    if(t.isMouseOver())
+        g.setColour (Colour(177, 0, 28));
+    g.drawFittedText (t.getButtonText(), 0, 0, t.getWidth(), t.getHeight(), Justification::centred, 2);
+
+}
+
 void SH02LAF::drawToggleButton (Graphics& g, ToggleButton& t,
                        bool shouldDrawButtonAsHighlighted, bool shouldDrawButtonAsDown)
 {
@@ -76,7 +94,9 @@ void SH02LAF::drawToggleButton (Graphics& g, ToggleButton& t,
     else if (colnum == 4)
     {
         Path playArrow;
-        playArrow.addTriangle(18, 15, 18, 45, 48, 30);
+        playArrow.addTriangle((int)(0.3f * t.getWidth()), (int)(0.25f * t.getHeight()),
+                              (int)(0.3f * t.getWidth()), (int)(0.75f * t.getHeight()),
+                              (int)(0.8f * t.getWidth()), (int)(0.5f * t.getHeight()));
         g.fillPath(playArrow);
      }
     else if (colnum == 6)
@@ -95,7 +115,7 @@ void SH02LAF::drawToggleButton (Graphics& g, ToggleButton& t,
     }
     else
     {
-        g.setFont(Font ("Gill Sans", "Bold", 36.00f));
+        g.setFont(Font (String("Trebuchet MS"), String("Bold"), 36.00f));
         g.drawText(t.getName(), 5, 5, t.getWidth()-10, t.getHeight()-10, juce::Justification::centred);
     }
 }

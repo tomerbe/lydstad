@@ -10,6 +10,8 @@
 		05C1D324CF841A998F823D77 /* include_juce_gui_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 50654489EE495FAD4011EEBD /* include_juce_gui_basics.mm */; };
 		1CE5D58BE501AB473D111193 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C3AF97AFA455D034891B79 /* OpenGL.framework */; };
 		1D9096D47160112A3287F41B /* include_juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9EC05DBEB24FB9921C571049 /* include_juce_audio_processors.mm */; };
+		217B868F24F46206001D7702 /* SHGPluginEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B868B24F46205001D7702 /* SHGPluginEditor.cpp */; };
+		217B869024F46206001D7702 /* SHGPluginProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 217B868D24F46206001D7702 /* SHGPluginProcessor.cpp */; };
 		21C7472E24DC874A00CAB194 /* SHLAF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7472C24DC874A00CAB194 /* SHLAF.cpp */; };
 		32F18C6E4BF9E1CBC2B2AC7F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C88AC1767D0C178E222828 /* AudioToolbox.framework */; };
 		3355F5CCDF59735F21E74FFC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84E4CDABCBCB94926AF767F5 /* Accelerate.framework */; };
@@ -52,6 +54,10 @@
 		174BCF138D97FCFB1716C5D3 /* Info-App.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-App.plist"; sourceTree = SOURCE_ROOT; };
 		1DD0CB0A1FDFB2D5C86E5AC7 /* juce_audio_utils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_utils; path = ../../../JUCE/modules/juce_audio_utils; sourceTree = SOURCE_ROOT; };
 		200BEC69D161F0BEE415070D /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		217B868B24F46205001D7702 /* SHGPluginEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHGPluginEditor.cpp; path = ../../Source/SHGPluginEditor.cpp; sourceTree = "<group>"; };
+		217B868C24F46206001D7702 /* SHGPluginEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHGPluginEditor.h; path = ../../Source/SHGPluginEditor.h; sourceTree = "<group>"; };
+		217B868D24F46206001D7702 /* SHGPluginProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SHGPluginProcessor.cpp; path = ../../Source/SHGPluginProcessor.cpp; sourceTree = "<group>"; };
+		217B868E24F46206001D7702 /* SHGPluginProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHGPluginProcessor.h; path = ../../Source/SHGPluginProcessor.h; sourceTree = "<group>"; };
 		21C7472C24DC874A00CAB194 /* SHLAF.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SHLAF.cpp; path = ../../Source/SHLAF.cpp; sourceTree = "<group>"; };
 		21C7472D24DC874A00CAB194 /* SHLAF.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = SHLAF.hpp; path = ../../Source/SHLAF.hpp; sourceTree = "<group>"; };
 		24822EE7EED47FCB18BF9689 /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = ../../../JUCE/modules/juce_audio_processors; sourceTree = SOURCE_ROOT; };
@@ -237,12 +243,16 @@
 		FA5549F1E94BB2750F38E64A /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				217B868B24F46205001D7702 /* SHGPluginEditor.cpp */,
+				217B868C24F46206001D7702 /* SHGPluginEditor.h */,
+				217B868D24F46206001D7702 /* SHGPluginProcessor.cpp */,
+				217B868E24F46206001D7702 /* SHGPluginProcessor.h */,
 				A1CF8E458C8F27A7B653855C /* SHListBox.cpp */,
 				501E5D3D49DD6E42499790D6 /* SHListBox.h */,
 				A345327D19AEB20E67A69C3D /* SHTimeline.cpp */,
 				BD85029DE361941355ABD85B /* SHTimeline.h */,
-				3484261460B4FC0D2FF47195 /* MainComponent.h */,
 				79D91CC332A0BC9458480490 /* MainComponent.cpp */,
+				3484261460B4FC0D2FF47195 /* MainComponent.h */,
 				343B37A98B7A94C24801E163 /* Main.cpp */,
 				21C7472C24DC874A00CAB194 /* SHLAF.cpp */,
 				21C7472D24DC874A00CAB194 /* SHLAF.hpp */,
@@ -337,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6BA5117DDEE97FDE504CD32 /* SHListBox.cpp in Sources */,
+				217B869024F46206001D7702 /* SHGPluginProcessor.cpp in Sources */,
 				5A9AFC49AA59B50294434361 /* SHTimeline.cpp in Sources */,
 				F825CE252CC02F71FF45B3AB /* MainComponent.cpp in Sources */,
 				6385CA4D1D31D706D16A930E /* Main.cpp in Sources */,
@@ -348,6 +359,7 @@
 				883CC63F7E54C00BFDE529FB /* include_juce_core.mm in Sources */,
 				BEBFC8CFE3A75277B46C9987 /* include_juce_cryptography.mm in Sources */,
 				6322396718410CF6F0AC00B4 /* include_juce_data_structures.mm in Sources */,
+				217B868F24F46206001D7702 /* SHGPluginEditor.cpp in Sources */,
 				21C7472E24DC874A00CAB194 /* SHLAF.cpp in Sources */,
 				69F2F7C1BE4F3E06896CB2B2 /* include_juce_events.mm in Sources */,
 				B8CED16AE9F3ACA9E0098B39 /* include_juce_graphics.mm in Sources */,
